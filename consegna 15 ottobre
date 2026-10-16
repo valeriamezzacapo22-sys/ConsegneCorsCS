@@ -1,0 +1,170 @@
+──(valeria22㉿kalivaleria)-[~]
+└─$ sudo adduser test_user
+[sudo] password for valeria22: 
+New password: 
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for test_user
+Enter the new value, or press ENTER for the default
+        Full Name []: 
+        Room Number []: 
+        Work Phone []: 
+        Home Phone []: 
+        Other []: 
+Is the information correct? [Y/n] y
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ sudo service ssh start
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 76:03:94:e7:10:80 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.64.2/24 brd 192.168.64.255 scope global dynamic noprefixroute eth0
+       valid_lft 3343sec preferred_lft 3343sec
+    inet6 fd93:9ff:60e2:7c13:f299:c361:6fbe:ce62/64 scope global temporary dynamic 
+       valid_lft 530745sec preferred_lft 12158sec
+    inet6 fd93:9ff:60e2:7c13:7403:94ff:fee7:1080/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 2591881sec preferred_lft 604681sec
+    inet6 fe80::7403:94ff:fee7:1080/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 26:73:4c:3e:bf:d5 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ ssh test_user@TUO_192.168.64.
+ssh: Could not resolve hostname tuo_192.168.64.: Name or service not known
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ ssh test_user@TUO_192.168.64.2
+ssh: Could not resolve hostname tuo_192.168.64.2: Name or service not known
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ ssh test_user@V=192.168.64.2  
+ssh: Could not resolve hostname v=192.168.64.2: Name or service not known
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ ssh test                    
+
+ssh: Could not resolve hostname test: Name or service not known
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ 
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ ssh test_user@192.168.64.2    
+The authenticity of host '192.168.64.2 (192.168.64.2)' can't be established.
+ED25519 key fingerprint is: SHA256:fLSPdBMOIuEGRphS930xrbGmqD42SDEBgaXnki3r/jY
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? ^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B
+Please type 'yes', 'no' or the fingerprint: YES
+Warning: Permanently added '192.168.64.2' (ED25519) to the list of known hosts.
+test_user@192.168.64.2's password: 
+Permission denied, please try again.
+test_user@192.168.64.2's password: 
+Permission denied, please try again.
+test_user@192.168.64.2's password: 
+Linux kalivaleria 6.19.14+kali-arm64 #1 SMP PREEMPT Kali 6.19.14-1+kali1 (2026-05-05) aarch64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+┌──(test_user㉿kalivaleria)-[~]
+└─$                                                                                                                                                                                                                                                                             
+
+┌──(test_user㉿kalivaleria)-[~]
+└─$ exit                                                                                                                                                                                                                                                                        
+logout
+Connection to 192.168.64.2 closed.
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ hydra -l test_user -p testpass 192.168.64.2 -t 4 ssh
+Hydra v9.7 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-16 19:32:41
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ssh://192.168.64.2:22/
+[22][ssh] host: 192.168.64.2   login: test_user   password: testpass
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-16 19:32:41
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ /v
+zsh: no such file or directory: /v
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ sudo apt install vsftpd
+[sudo] password for valeria22: 
+The following packages were automatically installed and are no longer required:
+  enchant-2        libavc1394-0  libicu76        libipc-run-perl  libpoppler147   libpostal1   libsdl2-classic  libsodium23    libteamdctl0  libxmlsec1-1         libzxing3       openjdk-21-jre-headless  python3-pluginbase  python3-tz
+  libabsl20240722  libgdal38     libio-pty-perl  libmbedcrypto16  libpostal-data  libraw23t64  libsimdutf31     libsvtav1enc2  libunibreak6  libxmlsec1-openssl1  openjdk-21-jre  postgresql-common-dev    python3-pysnmp4
+Use 'sudo apt autoremove' to remove them.
+
+Installing:
+  vsftpd
+                                                                                                                                                                                                                                                                                
+Summary:
+  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 1458
+  Download size: 137 kB
+  Space needed: 391 kB / 42.3 GB available
+
+Get:1 http://mirror.telepoint.bg/kali kali-rolling/main arm64 vsftpd arm64 3.0.5-1 [137 kB]
+Fetched 137 kB in 1s (144 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package vsftpd.
+(Reading database… 432999 files and directories currently installed.)
+Preparing to unpack …/vsftpd_3.0.5-1_arm64.deb…
+Unpacking vsftpd (3.0.5-1)…
+Setting up vsftpd (3.0.5-1)…
+Creating group 'ftp' with GID 970.
+Creating user 'ftp' (ftp daemon) with UID 970 and GID 970.
+update-rc.d: We have no instructions for the vsftpd init script.
+update-rc.d: It looks like a network service, we disable it.
+vsftpd.service is a disabled or a static unit, not starting it.
+Processing triggers for man-db (2.13.1-1+b1)…
+Processing triggers for kali-menu (2026.2.6)…
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ sudo service vsftpd start
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ sudo service vsftpd status
+● vsftpd.service - vsftpd FTP server
+     Loaded: loaded (/usr/lib/systemd/system/vsftpd.service; disabled; preset: disabled)
+     Active: active (running) since Fri 2026-10-16 19:37:22 CEST; 1min 13s ago
+ Invocation: 80df7e022f8f47b78c3ba89fe602e850
+       Docs: man:vsftpd(8)
+    Process: 617097 ExecStartPre=/bin/mkdir -p /run/vsftpd/empty (code=exited, status=0/SUCCESS)
+   Main PID: 617099 (vsftpd)
+      Tasks: 1 (limit: 4666)
+     Memory: 1M (peak: 2.2M)
+        CPU: 9ms
+     CGroup: /system.slice/vsftpd.service
+             └─617099 /usr/sbin/vsftpd /etc/vsftpd.conf
+
+Oct 16 19:37:22 kalivaleria systemd[1]: Starting vsftpd.service - vsftpd FTP server...
+Oct 16 19:37:22 kalivaleria systemd[1]: Started vsftpd.service - vsftpd FTP server.
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
+└─$ hydra -l test_user -p testpass 192.168.64.2 ftp
+Hydra v9.7 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-16 19:39:51
+[DATA] max 1 task per 1 server, overall 1 task, 1 login try (l:1/p:1), ~1 try per task
+[DATA] attacking ftp://192.168.64.2:21/
+[21][ftp] host: 192.168.64.2   login: test_user   password: testpass
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-16 19:39:52
+                                                                                                                                                                                                                                                                                
+┌──(valeria22㉿kalivaleria)-[~]
